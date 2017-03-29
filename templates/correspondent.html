@@ -1,0 +1,24 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+The Daily Show Correspondents
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+
+      <h1>Details about {{ name }}</h1>
+
+      <p>Role at The Daily Show: {{ title }}</p>
+
+      <p>Year(s) spent at The Daily Show: {{ years }}</p>
+
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

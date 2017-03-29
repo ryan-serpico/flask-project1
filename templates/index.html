@@ -1,0 +1,29 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+The Daily Show Correspondents
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+
+      <h1>The Daily Show Correspondents</h1>
+
+      <p class="lead">A simple list of 20 Daily Show Correspondents</p>
+
+<ul>
+  {% for name in names %}
+
+    <li><a href="{{ url_for('correspondent', id=id) }}">{{ name }}</a></li>
+
+  {% endfor %}
+</ul>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
