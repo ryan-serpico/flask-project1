@@ -11,12 +11,13 @@ Bootstrap(app)
 app.config['BOOTSTRAP_SERVE_LOCAL'] = True
 
 # This grabs all of the names from data.py and sorts them into a list.
-def get_names(source):
-    names = []
+def get_ids_and_names(source):
+    ids_and_names = []
     for row in source:
+        id = row["ID"]
         name = row["Name"]
-        names.append(name)
-    return sorted(names)
+        ids_and_names.append([id, name])
+    return ids_and_names
 
 
 # This function finds the row that matches the id passed to it from your function from your detail page down below and uses it to grab the name, title and years.
@@ -30,16 +31,13 @@ def get_corr(source, id):
             id = str(id)
             return id, name, title, years
 
-def get_id(source):
-    print("I can't figure out how to get ids to pass to my index() function on line 39 so that they can be handed off to my url_for() function in index.html")
 
 # This is for the list of names when you first load up the first page
 @app.route('/')
 @app.route('/index.html')
 def index():
-    names = get_names(CORRESPONDENTS)
-    id = get_id(CORRESPONDENTS)
-    return render_template('index.html', names=names, id=id)
+    ids_and_names = get_ids_and_names(CORRESPONDENTS)
+    return render_template('index.html', pairs=ids_and_names)
 
 # This is for the detail pages
 # In the future, make sure you have an HTML template ready to go before you reach this step, and don't forget that you need to use render_template for anything to happen.
@@ -47,9 +45,6 @@ def index():
 def correspondent(id):
     id, name, title, years = get_corr(CORRESPONDENTS, id)
     return render_template('correspondent.html', name=name, title=title, years=years)
-
-
-
 
 
 
