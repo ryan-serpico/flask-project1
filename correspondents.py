@@ -4,6 +4,8 @@ from data import CORRESPONDENTS
 
 app = Flask(__name__)
 
+application = app
+
 # This is just something that Bootstrap needs.
 Bootstrap(app)
 
@@ -41,7 +43,7 @@ def index():
 
 # This is for the detail pages
 # In the future, make sure you have an HTML template ready to go before you reach this step, and don't forget that you need to use render_template for anything to happen.
-@app.route('/correspondent/<id>')
+@app.route('/correspondent/<id>.html')
 def correspondent(id):
     id, name, title, years = get_corr(CORRESPONDENTS, id)
     return render_template('correspondent.html', name=name, title=title, years=years)
